@@ -9,14 +9,21 @@ def random_predict(number: int=1) -> int:
     Returns:
         int: Число попыток
     """
-
+    number = np.random.randint(1, 101)
+    min_number = 0
+    max_number = 100
     count = 0
     
     while True:
         count += 1
-        predict_number = np.random.randint(1, 101)
+        predict_number = round((min_number + max_number)/2) # приминяем бинарный поиск числа
         if number == predict_number:
             break
+        elif number > predict_number:
+            min_number = predict_number
+        elif number < predict_number:
+            max_number = predict_number
+        
     return(count)
     
 print(f'Количество попыток: {random_predict()}')
